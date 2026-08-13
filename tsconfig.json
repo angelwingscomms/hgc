@@ -1,0 +1,11 @@
+{
+	"extends": "$app/tsconfig",
+	"compilerOptions": {
+		"rewriteRelativeImportExtensions": true,
+		"sourceMap": true,
+		"strict": true,
+		"types": ["./worker-configuration.d.ts", "$app/types"]
+	},
+	"include": ["src"],
+	"exclude": [".svelte-kit/output", ".svelte-kit/cloudflare", ".svelte-kit/cloudflare-tmp"]
+}
