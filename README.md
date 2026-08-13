@@ -74,6 +74,18 @@ The `marketing/` directory holds work that is separate from the code:
 6. Add real photographs. The site carries no images at all, which is deliberate and works, but
    one good portrait on the About page would raise trust.
 
+## Domains and SEO
+
+Every canonical URL, Open Graph tag, JSON-LD block, and sitemap entry is built from
+`site.url` in `src/lib/site.ts`, which is `https://hoganandcrownlaw.com`. That is deliberate.
+The client review copy runs on a temporary address, but the SEO always names the real domain,
+so nothing has to change at launch.
+
+`robots.txt` decides by hostname at request time, in `src/routes/robots.txt/+server.ts`. On
+`hoganandcrownlaw.com` it allows crawling and points at the sitemap. On any other host it
+returns `Disallow: /`, which keeps the review copy out of the index. Nobody has to remember to
+flip a file, so the live site cannot be deindexed by a stale deployment.
+
 ## Deploy
 
 ```bash
@@ -81,5 +93,9 @@ pnpm build
 pnpm dlx wrangler deploy
 ```
 
-The adapter writes to `.svelte-kit/cloudflare`. Every page prerenders, so the worker only
-serves static assets. There are no secrets and no server routes.
+The current review address is `hoganandcrown.apexlinks.org`, set as a custom domain in
+`wrangler.jsonc`. To move to the real domain, change that route to `hoganandcrownlaw.com`,
+point the domain's nameservers at Cloudflare, and deploy. Nothing else changes.
+
+The adapter writes to `.svelte-kit/cloudflare`. Every page prerenders except `robots.txt`, so
+the worker mostly serves static assets. There are no secrets.
