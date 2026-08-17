@@ -7,18 +7,28 @@
 	"audio": "sound design only. a soft paper thump when the rectangle posts into the slot, two light wooden footsteps, one low hollow knock as the rectangle rises back. no voice, no speech, no music, no melody.",
 	"captions": [
 		{
-			"t": [0.0, 1.3],
+			"t": [
+				0.0,
+				1.3
+			],
 			"label": "3 august 2026",
 			"line": "*$15,000*\nto visit america"
 		},
 		{
-			"t": [1.5, 5.8],
+			"t": [
+				1.5,
+				5.8
+			],
 			"line": "it is a bond, not a fee.\nleave on time and get\n*every dollar back*."
 		},
 		{
-			"t": [6.0, 7.3],
+			"t": [
+				6.0,
+				7.3
+			],
 			"line": "*one late day*\nand it is gone"
 		}
 	],
-	"endcard": "hogan and crown law"
+	"endcard": "hogan and crown law",
+	"seed": 9
 }
