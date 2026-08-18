@@ -1,0 +1,35 @@
+{
+	"id": "hgc-calm-voice",
+	"brand": "hgc",
+	"dur": 9,
+	"resolution": "720p",
+	"model": "bytedance/seedance-2.0-mini",
+	"motion": "motion: one slow closed breathing cycle and nothing else. the figure rises and settles a fraction with each slow breath, the large circle behind gently brightens and dims like a soft sun, and the low deep green horizon arc very slowly lifts and lowers like a gentle wave. everything moves slowly, softly and gently, like breathing, no jumps, no snaps, no hurry. locked camera, no dolly, no parallax, no zoom. 24fps, seamless loop, the final frame returns to the opening frame.",
+	"shot": "one shot, camera locked, vertical 9:16, bold and simple, very few shapes, locked to the uploaded first frame, geometry unchanged. an open calm scene of flat paper tone #f1f2ee filling the frame. centred at the middle of the frame: one figure with a tiny round head, no face, no eyes, a blocky deep green #1e4034 torso and long thin lighter green #2c5f4d noodle limbs with rounded bends, seated in a relaxed calm pose on the lower part of the frame, hands resting gently, head slightly bowed. behind the seated figure, higher in the frame: one large flat circle in pale #e6e8e2 like a soft sun, and one thick low arc in deep green #1e4034 running edge to edge across the lower middle like a quiet horizon. the figure sits inside the calm space under the circle and above the horizon, clearly separated from them, nothing crossing the figure. the top third and the bottom quarter of the frame are completely empty flat paper colour with nothing in them, so captions can sit there. the mood is peaceful, still and serene.",
+	"audio": "a soft, calm, warm female voiceover speaks gently and slowly, the spoken line in double quotes: \"A visa denial is not a verdict on your life. It is paperwork. Paperwork can be fixed. Breathe. You are not alone.\" gentle close room tone underneath. no music, no instruments, only the warm voice and soft room tone.",
+	"captions": [
+		{
+			"t": [
+				0.0,
+				1.3
+			],
+			"line": "a visa denial is\n*not* a verdict on your life"
+		},
+		{
+			"t": [
+				1.5,
+				5.8
+			],
+			"line": "it is paperwork.\nand paperwork *can be fixed*."
+		},
+		{
+			"t": [
+				6.0,
+				7.4
+			],
+			"line": "breathe.\nyou are *not alone*"
+		}
+	],
+	"endcard": "hogan and crown law",
+	"seed": 4
+}
