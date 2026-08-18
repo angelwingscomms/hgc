@@ -1,0 +1,35 @@
+{
+	"id": "hgc-bond-calm",
+	"brand": "hgc",
+	"dur": 9,
+	"resolution": "720p",
+	"model": "bytedance/seedance-2.0-mini",
+	"shot": "one shot, camera locked, vertical 9:16, bold and simple, very few shapes, locked to the uploaded first frame, geometry unchanged. dead centre: a wide open doorway drawn as a thick deep green #1e4034 inverted U, with the pale paper background #f1f2ee clearly visible through the opening so it reads as a way through. standing in the opening, filling half the frame height: one figure with a tiny round head, no face, no eyes, a blocky deep green torso and long thin noodle limbs with rounded bends. the figure holds one oversized solid mid green #2c5f4d rounded rectangle out in front at waist height in both huge hands, well below the head so the tiny head is fully visible and unobstructed against the pale opening. the rectangle is a strong solid green block, clearly darker than the background, with clean empty paper all around it. to the right of the doorway stands one narrow pale grey #cdd0c8 post with a single slim dark vertical slot in it. exactly one background shape and no more: one large pale #e6e8e2 circle centred behind the doorway. no bars, no stripes, nothing crossing the figure. the top third and the bottom quarter of the frame are completely empty flat paper colour with nothing in them. the motion is one slow closed cycle and nothing else: the figure gently lifts the green rectangle from waist height up towards the slot in the post with a long soft rise, holds it there in a calm pause, then slowly lowers it back down to waist height, finishing in exactly the pose it started in. everything moves slowly, softly and gently, like breathing. no jumps, no snaps, no hurry. the figure never walks, never leaves the doorway, and never exits the frame. the doorway, the post, and the circle do not move at all.",
+	"audio": "soft warm room tone underneath, one gentle paper breath as the rectangle rises, a low soft wooden thock at the top of the rise, a faint warm chime as it settles back down, then quiet stillness.",
+	"captions": [
+		{
+			"t": [
+				0.0,
+				1.3
+			],
+			"label": "3 august 2026",
+			"line": "*$15,000*\nto visit america"
+		},
+		{
+			"t": [
+				1.5,
+				5.8
+			],
+			"line": "it is a bond, not a fee.\nleave on time, get\n*every dollar back*."
+		},
+		{
+			"t": [
+				6.0,
+				7.4
+			],
+			"line": "breathe —\nthe bond comes home"
+		}
+	],
+	"endcard": "hogan and crown law",
+	"seed": 9
+}
