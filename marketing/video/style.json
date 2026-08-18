@@ -1,0 +1,27 @@
+{
+  "model": "bytedance/seedance-2.0-mini",
+
+  "look": "painterly 3d animation. hand painted textures wrapped over solid 3d forms, visible oil brush strokes on skin, cloth and metal, hand drawn ink linework picking out the edges of faces and props, painted smears in the shadows. grounded realistic human proportions with real weight and real posture. gritty lived in detail, scuffed paint, worn formica, grease on the chrome. low key cinematic lighting, strong warm rim light on hair and shoulders, deep painted shadow. subtle film grain, slight softness at the frame edges. feature animation craft, not cel shaded, not anime, not flat cartoon, not photoreal live action.",
+
+  "set": "the same place every episode. a small roadside diner at dusk, seen from seated eye height across the room, 35mm lens. the same two friends in a corner booth facing each other, both still in heavy coats. a Black man in his thirties, short beard, worn olive jacket, sits with his back to the room. a woman in her thirties with an East Asian face sits opposite him with her hands round a chipped white mug. one low pendant hangs over the booth with the bulb shielded, so the light lands on their two faces and the two faces are the brightest area in the frame. deep green black shadow everywhere else. behind her shoulder, deep in the room, a glass street door with a brass push bar, and past it heavy rain falling in the street, dim and desaturated behind fogged glass. dominant horizontal lines: counter edge, table edge, window mullions, the strip light on the ceiling. rectangular shapes throughout. three clear depth planes with near objects overlapping far ones. every colour in the warm amber range, the rain outside the only cool note and it stays dim.",
+
+  "camera": "camera: one continuous take, no cuts. locked off, then an extremely slow dolly push in across the whole shot, no more than twenty centimetres of travel, so the near table edge slides against the background. no zoom, no pan, no handheld shake, no whip. 24fps, slow regular rhythm.",
+
+  "avoid": "photoreal live action, cel shaded anime, flat cartoon, glossy plastic 3d, text, letters, subtitles, captions, watermark, logo, signage, extra fingers, warped faces, camera shake, zoom, whip pan, scene cut, montage, split screen, slow motion",
+
+  "burn": {
+    "name": "hogan and crown law",
+    "paper": "#f1f2ee",
+    "ink": "#15171b",
+    "seal": "#1e4034",
+    "muted": "#5b5f59",
+    "endcard_label": "things we wish you knew",
+    "endcard_sub": "hoganandcrown.apexlinks.org",
+    "chromium": "/home/ed/.local/bin/chromium",
+    "fonts": {
+      "display": "/home/ed/i/hgc/static/fonts/newsreader-normal-200-800.woff2",
+      "sans": "/home/ed/i/hgc/static/fonts/instrument-sans-normal-400-700.woff2",
+      "mono": "/home/ed/i/hgc/static/fonts/ibm-plex-mono-normal-500.woff2"
+    }
+  }
+}
