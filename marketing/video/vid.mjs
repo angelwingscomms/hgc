@@ -6,7 +6,7 @@ import { dirname, resolve, join } from 'node:path';
 const [cmd, spec_path] = process.argv.slice(2);
 const key = process.env.OPENROUTER_API_KEY;
 if (!key) die('OPENROUTER_API_KEY is not set');
-if (!cmd || !spec_path) die('usage: vid.mjs key|gen|burn|cost <spec.json>');
+if (!cmd || !spec_path) die('usage: vid.mjs key|gen|burn|cost <spec.json> [prod]');
 
 const spec = JSON.parse(readFileSync(spec_path, 'utf8'));
 const here = dirname(resolve(spec_path));
@@ -39,19 +39,23 @@ if (cmd === 'cost') {
 }
 
 if (cmd === 'key') {
-	const j = await api('/chat/completions', {
-		method: 'POST',
-		body: JSON.stringify({
-			model: 'google/gemini-3-pro-image',
-			messages: [{ role: 'user', content: `${style.look}\n\n${style.set}\n\n${spec.frame}\n\nvertical 9:16 single film still. no text, no letters, no subtitles, no signage, no watermark anywhere in frame.` }],
-			modalities: ['image', 'text'],
-			max_tokens: 8000
-		})
-	});
-	const url = j.choices?.[0]?.message?.images?.[0]?.image_url?.url;
-	if (!url) die(`no image: ${JSON.stringify(j).slice(0, 500)}`);
-	writeFileSync(kf, Buffer.from(url.split(',')[1], 'base64'));
-	console.log(kf);
+	const prod = process.argv[4] === 'prod';
+	const body = {
+		model: prod ? style.prod_model : style.draft_model,
+		prompt: `${style.look}\n\n${style.set}\n\n${spec.frame}\n\nvertical 9:16 single film still. no text, no letters, no subtitles, no signage, no watermark anywhere in frame.`,
+		aspect_ratio: '9:16',
+		resolution: '1K'
+	};
+	if (prod) body.quality = 'low';
+	else if (spec.seed !== undefined) body.seed = spec.seed;
+	console.error(`${body.model} ${body.resolution} — balance $${await balance()}`);
+	const j = await api('/images', { method: 'POST', body: JSON.stringify(body) });
+	const d = j.data?.[0];
+	const b64 = d?.b64_json ?? (d?.url?.startsWith('data:') ? d.url.split(',')[1] : null);
+	if (!b64) die(`no image: ${JSON.stringify(j).slice(0, 400)}`);
+	const f = prod ? kf : p('-draft.png');
+	writeFileSync(f, Buffer.from(b64, 'base64'));
+	console.log(f);
 }
 
 if (cmd === 'gen') {
