@@ -6,26 +6,30 @@
     {
       "line": "no judge's warrant, no need to open the door",
       "move": "in",
-      "scene": "the inside of a cheap apartment front door at night, seen close and slightly low. the security chain is on. a hard blade of hallway light comes under the door across a worn floor. a woman's bare feet stand still just behind it, only her feet and ankles in frame, not moving. small wired glass pane in the door, fogged with condensation from the cold outside.",
-      "text_in": "the sentence is traced by a fingertip through the condensation on that small fogged pane, the strokes clear and wet with slow drips running down from the bottom of each letter, cold blue street light coming through the cleared glass"
+      "scene": "a woman in her thirties stands two steps back from her own front door at night, completely still, arms down at her sides, deliberately not reaching for the handle. she is looking straight at the door, jaw set, frightened but holding. through the frosted glass panel in the upper half of the door, the dark shapes of two figures stand waiting on the other side. one bare hallway bulb lights the side of her face and the face of the door. everything else falls to near black.",
+      "text_in": "the sentence shows in the door's own paintwork, where years of weather and hands have worn the paint thin and flaked it away, the pale bare wood underneath showing through in the shape of the letters, catching the hallway light across the door",
+      "surface": "the painted face of the front door"
     },
     {
       "line": "the government will never call you for money",
       "move": "drift-left",
       "scene": "a small kitchen at night, one warm bulb. a phone lies face up on a formica counter, screen lit pale with an unknown number calling. a cold half drunk cup of tea beside it. beside them a thick cream government envelope lies flat and unopened.",
-      "text_in": "the sentence is pressed blind into the thick cream paper of that envelope, no ink at all, only the raised and sunken shapes of the letters catching a low raking light across the paper"
+      "text_in": "the sentence is pressed blind into the thick cream paper of that envelope, no ink at all, only the raised and sunken shapes of the letters catching a low raking light across the paper",
+      "surface": "the front of the cream government envelope"
     },
     {
       "line": "the flight home is what triggers the ban",
-      "move": "out",
+      "move": "in",
       "scene": "an empty airport departure gate at dawn, long rows of seats, one suitcase standing alone, a tall window with a plane waiting on the wet apron beyond, cold grey blue light flooding in.",
-      "text_in": "the sentence is worn into the painted concrete floor itself, the paint rubbed away by thousands of feet walking the same line to the gate, the letters visible only as pale worn patches in the paint, catching the low dawn light coming across the floor"
+      "text_in": "the sentence is worn into the painted concrete floor in the wide empty foreground, the paint rubbed away by thousands of feet, the letters showing as pale worn patches. it lies flat across the floor facing the camera, reading left to right on two stacked lines, sitting well inside the frame with clear space at both edges, never running away towards the horizon and never touching the edge of the picture",
+      "surface": "the painted concrete floor of the gate area"
     },
     {
       "line": "none of this was hidden. nobody told you.",
       "move": "drift-right",
       "scene": "a woman in her thirties sits on the floor of a narrow hallway at night, her back against the wall, knees drawn up, one opened letter loose in her hand and four or five more envelopes fanned on the floorboards around her. she is looking down at the letter, tired, her face clearly visible and lit. the hallway is cold teal and nearly black. one warm amber light falls out of an open doorway behind her and lays a long panel of light across the floorboards in front of her.",
-      "text_in": "the sentence is worn into the varnish of those wooden floorboards inside that panel of light, the shine rubbed away by years of feet walking the same line down the hall, the letters showing only as dull patches where the varnish has gone, following the perspective of the boards"
+      "text_in": "the sentence is worn into the varnish of those wooden floorboards inside that panel of light, the shine rubbed away by years of feet walking the same line down the hall, the letters showing only as dull patches where the varnish has gone, following the perspective of the boards",
+      "surface": "the wooden floorboards inside the panel of light"
     }
   ]
 }

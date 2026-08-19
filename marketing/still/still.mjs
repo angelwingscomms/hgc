@@ -44,9 +44,9 @@ palette: cold teal green ground against a warm amber key. no magenta, no pink, n
 
 ${c.scene}
 
-the words "${c.line}" appear in this picture, and they are physically part of the scene, not printed over it. ${c.text_in}. the lettering is a plain unadorned lowercase sans serif, evenly spaced, sitting on one or two straight lines, large and clear enough to read from across the room. nothing else in the picture carries any writing.
+the words "${c.line}" appear in this picture, and they are physically part of the scene, never printed over it. ${c.text_in}. the lettering is large, plain, lowercase, on two lines. nothing else in the picture carries any writing.
 
-vertical 9:16. no watermark, no logo, no signage, no caption bar, no border.`;
+vertical 9:16. no watermark, no logo, no caption bar, no border.`;
 		const gen = async (body) => {
 			const j = await api('/images', { method: 'POST', body: JSON.stringify(body) });
 			const d = j.data?.[0];
@@ -60,10 +60,10 @@ vertical 9:16. no watermark, no logo, no signage, no caption bar, no border.`;
 		writeFileSync(p(`-d${i}.png`), base);
 		if (draft) { console.log(p(`-d${i}.png`)); continue; }
 
-		// pass two: the strong model fixes only the lettering, keeping pass one's paint
+		// pass two: the strong model letters the clean painting without touching the paint
 		const fixed = await gen({
 			model: style.prod_model,
-			prompt: `keep this painting exactly as it is. same flat painted style, same colours, same light, same composition, same objects in the same places. change nothing except the lettering. the lettering must read exactly: "${c.line}". keep it the same size and in the same place, and keep the way it sits in the scene: ${c.text_in}.`,
+			prompt: `the writing on ${c.surface} in this painting is misspelled nonsense. erase it completely and redraw it from scratch, spelled correctly, reading exactly these words and nothing else: "${c.line}". keep it the same size and in the same place, on two lines, plain lowercase. it must stay physically part of the scene exactly as it is now, never flat type laid on top: ${c.text_in}. everything else in the painting stays exactly as it is: same flat painted style, same colours, same light, same composition, every object where it is.`,
 			input_references: [{ type: 'image_url', image_url: { url: `data:image/png;base64,${base.toString('base64')}` } }],
 			aspect_ratio: '9:16',
 			resolution: '1K',
