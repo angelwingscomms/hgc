@@ -29,36 +29,47 @@ const api = async (path, init = {}) => {
 
 if (cmd === 'pic') {
 	if (!key) die('OPENROUTER_API_KEY is not set');
+	const draft = process.argv[5] === 'draft';
+	const model = draft ? style.draft_model : style.prod_model;
 	const idx = arg === 'all' ? spec.cards.map((_, i) => i) : [Number(arg)];
 	const bal = (await api('/key')).data.limit_remaining;
-	console.error(`${idx.length} still(s), balance $${bal.toFixed(2)}`);
+	console.error(`${idx.length} still(s) on ${model}, balance $${bal.toFixed(2)}`);
 	for (const i of idx) {
 		const c = spec.cards[i];
-		const prompt = `A PAINTING, NOT A PHOTOGRAPH. this is a hand painted oil illustration on canvas. every single surface carries visible brush strokes and flat painted planes of colour. edges are made by paint, never by camera focus. there is no photographic detail, no lens blur, no 3d render sheen anywhere in it.
+		const prompt = `THIS IS A SINGLE FRAME FROM A PAINTED 3D ANIMATED FEATURE FILM. it is not a photograph, not live action, and not an oil painting on canvas. it is animation. every surface is built from flat simplified planes of painted colour with soft painted edges, the way a background painter blocks in a shape. there is no photographic surface texture, no visible fabric weave or carpet fibre, no volumetric light shafts or god rays, no realistic depth of field, no render sheen and no specular highlights. light falls as broad flat painted shapes, not as simulated beams.
 
 ${style.look}
 
-palette: cold teal green and warm amber only. no magenta, no pink, no purple.
+palette: cold teal green ground against a warm amber key. no magenta, no pink, no purple.
 
 ${c.scene}
 
 the words "${c.line}" appear in this picture, and they are physically part of the scene, not printed over it. ${c.text_in}. the lettering is a plain unadorned lowercase sans serif, evenly spaced, sitting on one or two straight lines, large and clear enough to read from across the room. nothing else in the picture carries any writing.
 
 vertical 9:16. no watermark, no logo, no signage, no caption bar, no border.`;
-		const j = await api('/images', {
-			method: 'POST',
-			body: JSON.stringify({
-				model: style.prod_model,
-				prompt,
-				aspect_ratio: '9:16',
-				resolution: '1K',
-				quality: 'low'
-			})
+		const gen = async (body) => {
+			const j = await api('/images', { method: 'POST', body: JSON.stringify(body) });
+			const d = j.data?.[0];
+			const b64 = d?.b64_json ?? (d?.url?.startsWith('data:') ? d.url.split(',')[1] : null);
+			if (!b64) die(`card ${i}: no image ${JSON.stringify(j).slice(0, 300)}`);
+			return Buffer.from(b64, 'base64');
+		};
+
+		// pass one: the cheap model paints the scene in the house style
+		const base = await gen({ model: style.draft_model, prompt, aspect_ratio: '9:16', resolution: '1K' });
+		writeFileSync(p(`-d${i}.png`), base);
+		if (draft) { console.log(p(`-d${i}.png`)); continue; }
+
+		// pass two: the strong model fixes only the lettering, keeping pass one's paint
+		const fixed = await gen({
+			model: style.prod_model,
+			prompt: `keep this painting exactly as it is. same flat painted style, same colours, same light, same composition, same objects in the same places. change nothing except the lettering. the lettering must read exactly: "${c.line}". keep it the same size and in the same place, and keep the way it sits in the scene: ${c.text_in}.`,
+			input_references: [{ type: 'image_url', image_url: { url: `data:image/png;base64,${base.toString('base64')}` } }],
+			aspect_ratio: '9:16',
+			resolution: '1K',
+			quality: 'low'
 		});
-		const d = j.data?.[0];
-		const b64 = d?.b64_json ?? (d?.url?.startsWith('data:') ? d.url.split(',')[1] : null);
-		if (!b64) die(`card ${i}: no image ${JSON.stringify(j).slice(0, 300)}`);
-		writeFileSync(p(`-${i}.png`), Buffer.from(b64, 'base64'));
+		writeFileSync(p(`-${i}.png`), fixed);
 		console.log(p(`-${i}.png`));
 	}
 }
