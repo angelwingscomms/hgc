@@ -1,25 +1,26 @@
 {
   "id": "hgc-leaving",
   "dur": 9,
-  "resolution": "480p",
-  "seed": 9,
-  "frame": "the man leans in over the table, one hand flat on the formica, mouth open mid word, eyes on her. she holds the mug halfway to her lips, eyebrows going up, eyes on him. at the counter behind him a man in a canvas jacket is standing up off his stool with his back to us, pulling his coat on, about to leave. the street door behind her is shut and streaming with rain.",
-  "shot": "one continuous take, no cuts. the man drops into the seat opposite her and speaks straight away, flat and matter of fact, no greeting. he says: \"the ban is not the overstay.\" she says: \"then what is it?\" he says: \"leaving. the second you leave.\" on the word leave, the street door behind her bangs open as the man in the canvas jacket steps out into the street, and a hard sheet of rain floods down past the open doorway, cold blue white and bright against the warm room. she turns her head sharply towards the sound, eyes wide, then turns back to him. behind her the soaked man trudges back in through the door, hair flat to his head, water running off his sleeves, and stands there dripping. neither friend looks at him. the first half of the shot is calm and entirely warm, bodies almost still, slow and regular. the only saturated cool colour, the only fast movement and the brightest area of the frame all arrive at the same moment, at the open door, on the word leave.",
-  "audio": "two friends talking in a small diner, voices close and dry, low room tone under them, a fridge hum, a spoon touching ceramic, faint rain behind the glass. near the end a door bangs open and heavy rain roars in the street, then the door swings shut and the rain drops back to a muffle, and wet footsteps cross the floor.",
+  "resolution": "720p",
+  "seed": 18,
+  "frame": "halfway between the booth and the door, a man in a canvas jacket stands with his back to us, coat on, one hand reaching for the brass push bar, about to leave. he is clearly visible. in the foreground the man leans in over the table, one hand flat on it, mouth open mid word, eyes on her. she listens with a calm relaxed face, mug held loosely, eyes on him.",
+  "shot": "one continuous take, no cuts, no scene change. first half, calm: the man leans in over the table and taps one finger twice on the formica as he speaks, flat and matter of fact. she listens with a calm, unbothered face and sets her mug down. he says: \"the ban is not the overstay.\" she says: \"then what is it?\" he says: \"leaving. the second you leave.\" at the back of the room, all the way through, a man in a canvas jacket walks from the counter towards the street door, pushes it open and steps OUT into the street, away from us. he never comes back in. the instant he crosses the threshold a wall of rain hammers straight down on him and he stops dead, frozen in the lit doorway with his shoulders up, soaked through in one second. at that same instant she reacts: her eyebrows jump, her eyes go wide and she turns her head sharply towards the door, then back to him. her face changes clearly from calm to startled. the doorway is the only cool colour, the only fast movement and the brightest area in the frame, and it all arrives at once on the word leave.",
+  "audio": "two friends talking in a quiet diner, close dry voices with clear pauses between the lines, low room tone, a fridge hum, a finger tapping formica. then a door swings open and rain roars hard in the street.",
   "captions": [
     {
       "t": [
         0.0,
-        3.2
+        3.4
       ],
       "line": "the ban does not start\nwhen you overstay"
     },
     {
       "t": [
-        3.4,
-        6.6
+        3.6,
+        7.9
       ],
       "line": "it starts the second\nyou leave"
     }
-  ]
+  ],
+  "endcard": 0.7
 }

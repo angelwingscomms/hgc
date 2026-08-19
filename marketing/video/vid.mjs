@@ -67,7 +67,8 @@ if (cmd === 'gen') {
 		resolution: res,
 		generate_audio: true
 	};
-	if (spec.seed !== undefined) body.seed = spec.seed;
+	if (spec.seed !== undefined && style.model.includes('seedance')) body.seed = spec.seed;
+	if (spec.safety_tolerance !== undefined) body.safety_tolerance = spec.safety_tolerance;
 	if (existsSync(kf))
 		body.frame_images = [{
 			type: 'image_url',
@@ -102,7 +103,7 @@ if (cmd === 'burn') {
 html,body{width:1080px;height:1920px;background:transparent}
 body{font-family:s;display:flex;flex-direction:column}
 .cap{margin-top:300px;padding:0 72px;font-size:78px;line-height:1.12;letter-spacing:-.025em;font-weight:600;color:#fff;text-shadow:0 4px 40px rgba(0,0,0,.85),0 2px 8px rgba(0,0,0,.7);white-space:pre-line}
-.end{margin:auto;width:calc(100% - 144px);background:${b.paper};border-top:10px solid ${b.seal};padding:56px 48px 52px;text-align:center}
+.end{margin:auto 72px 190px;width:calc(100% - 144px);background:${b.paper};border-top:10px solid ${b.seal};padding:56px 48px 52px;text-align:center}
 .lbl{font-family:m;font-size:24px;letter-spacing:.18em;text-transform:uppercase;color:${b.muted}}
 .name{font-family:d;font-size:86px;line-height:1.02;letter-spacing:-.03em;color:${b.ink};margin:26px 0}
 </style>${body}`;
@@ -120,7 +121,7 @@ body{font-family:s;display:flex;flex-direction:column}
 		return g;
 	});
 
-	const times = [...spec.captions.map((c) => c.t), [dur - 1.6, dur]];
+	const times = [...spec.captions.map((c) => c.t), [dur - (spec.endcard ?? 1.6), dur]];
 	let chain = `[0:v]scale=1080:1920:flags=lanczos,setsar=1[v0];`;
 	times.forEach(([a, z], i) => {
 		chain += `[v${i}][${i + 1}:v]overlay=0:0:enable='between(t,${a},${z})'[v${i + 1}];`;
