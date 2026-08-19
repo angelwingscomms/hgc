@@ -1,0 +1,31 @@
+{
+  "id": "hgc-told",
+  "hold": 3.5,
+  "endcard": 2.0,
+  "cards": [
+    {
+      "line": "no judge's warrant, no need to open the door",
+      "move": "in",
+      "scene": "the inside of a cheap apartment front door at night, seen close and slightly low. the security chain is on. a hard blade of hallway light comes under the door across a worn floor. a woman's bare feet stand still just behind it, only her feet and ankles in frame, not moving. small wired glass pane in the door, fogged with condensation from the cold outside.",
+      "text_in": "the sentence is traced by a fingertip through the condensation on that small fogged pane, the strokes clear and wet with slow drips running down from the bottom of each letter, cold blue street light coming through the cleared glass"
+    },
+    {
+      "line": "the government will never call you for money",
+      "move": "drift-left",
+      "scene": "a small kitchen at night, one warm bulb. a phone lies face up on a formica counter, screen lit pale with an unknown number calling. a cold half drunk cup of tea beside it. beside them a thick cream government envelope lies flat and unopened.",
+      "text_in": "the sentence is pressed blind into the thick cream paper of that envelope, no ink at all, only the raised and sunken shapes of the letters catching a low raking light across the paper"
+    },
+    {
+      "line": "the flight home is what triggers the ban",
+      "move": "out",
+      "scene": "an empty airport departure gate at dawn, long rows of seats, one suitcase standing alone, a tall window with a plane waiting on the wet apron beyond, cold grey blue light flooding in.",
+      "text_in": "the sentence is worn into the painted concrete floor itself, the paint rubbed away by thousands of feet walking the same line to the gate, the letters visible only as pale worn patches in the paint, catching the low dawn light coming across the floor"
+    },
+    {
+      "line": "none of this was hidden. nobody told you.",
+      "move": "drift-right",
+      "scene": "a quiet living room in early morning, empty armchair, a stack of unopened letters on the arm, one shaft of low sun coming across a worn patterned carpet.",
+      "text_in": "the sentence is brushed into the pile of that worn carpet, the way a vacuum leaves stripes, the letters showing only as a change in the direction of the nap where the light rakes across it"
+    }
+  ]
+}
