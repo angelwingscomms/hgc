@@ -1,11 +1,17 @@
 {
   "id": "hgc-baby",
   "seed": 27,
-  "cuts": [3.54, 7.07, 10.61, 14.12, 16.02],
+  "cuts": [
+    3.54,
+    7.07,
+    10.61,
+    14.12,
+    16.02
+  ],
   "xfade": 0.35,
   "sound": {
     "track": "benson boone - in the stars (slowed + reverb), tiktok version",
-    "start_at": 2.30,
+    "start_at": 2.3,
     "note": "start the sound 2.30s into the track, on the first piano strike"
   },
   "source": "linkedin post, 8mo: your U.S. citizen baby is NOT your immigration plan",
@@ -32,11 +38,11 @@
       "text_in": "the sentence is carved into the wooden floorboards in front of her bed, hacked in roughly with a knife across the grain and through the varnish into raw pale wood. the grooves are uneven in depth and width, splinters and torn grain along every edge, varnish chipped back around them, shadow sitting in the bottom of every cut and the warm hall light catching the raised edge of each stroke"
     },
     {
-      "line": "whatsapp groups are not lawyers",
+      "line": "there are other ways. nobody told you.",
       "move": "drift-right",
       "surface": "the wooden kitchen tabletop",
-      "scene": "a dark kitchen in the middle of the night. a woman sits alone at a wooden table, her phone flat in front of her, its screen throwing a cold green white glow up onto her face and hands. she is reading, brow drawn, believing it. no other light in the room. everything beyond her falls to near black.",
-      "text_in": "the sentence is carved into the wooden tabletop right beside the phone, cut deep and crude with a blade into the worn wood, the grooves darkened with years of grime and catching the cold glow of the screen along one edge. the cutting is uneven, edges chipped, grain torn, some strokes doubled, as if scratched there over a long time"
+      "scene": "the same dark kitchen, one beat later. the woman sits at the same wooden table but has set the phone face down and taken her hands off it. she has lifted her head and is looking up and away, towards a door standing open across the room where the first warm light of morning is coming in and laying a pale panel across the floor and the table. her face is lit by that light and clearly visible, tired, not smiling, but no longer bent over the screen. the rest of the room is still cold teal and near black.",
+      "text_in": "the sentence is carved into the wooden tabletop in front of her, cut deep and crude with a blade into the worn wood, the grooves darkened with years of grime. every groove holds shadow down one side and catches the warm morning light down the other, so the letters read as real cut depth. the cutting is uneven, edges chipped, grain torn, some strokes doubled, as if scratched there slowly over a long time"
     }
   ]
 }
