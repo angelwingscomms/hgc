@@ -75,33 +75,42 @@ vertical 9:16. no watermark, no logo, no caption bar, no border.`;
 }
 
 if (cmd === 'cut') {
-	const W = 1080, H = 1920, FPS = 30, F = Math.round(hold * FPS);
-	const moves = {
-		in:            `z='min(1+0.06*on/${F},1.06)'  :x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`,
-		out:           `z='1.06-0.06*on/${F}'         :x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`,
-		'drift-left':  `z='1.05':x='(iw-iw/zoom)*(1-on/${F})':y='ih/2-(ih/zoom/2)'`,
-		'drift-right': `z='1.05':x='(iw-iw/zoom)*(on/${F})'  :y='ih/2-(ih/zoom/2)'`
+	const W = 1080, H = 1920, FPS = 30;
+	const x = spec.xfade ?? 0.35;
+	const cuts = spec.cuts ?? spec.cards.map((_, i) => (i + 1) * (spec.hold ?? 3.5));
+	const holds = cuts.map((t, i) => t - (i ? cuts[i - 1] : 0));
+
+	const seg = (src, dur, move) => {
+		const f = Math.round(dur * FPS);
+		const moves = {
+			in:            `z='min(1+0.06*on/${f},1.06)'  :x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`,
+			out:           `z='1.06-0.06*on/${f}'         :x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`,
+			'drift-left':  `z='1.05':x='(iw-iw/zoom)*(1-on/${f})':y='ih/2-(ih/zoom/2)'`,
+			'drift-right': `z='1.05':x='(iw-iw/zoom)*(on/${f})'  :y='ih/2-(ih/zoom/2)'`
+		};
+		const o = p(`-seg${move}${Math.round(dur * 100)}${src.slice(-5, -4)}.mp4`);
+		execFileSync('ffmpeg', ['-y', '-loop', '1', '-i', src, '-t', String(dur),
+			'-vf', `scale=${W * 2}:${H * 2}:force_original_aspect_ratio=increase,crop=${W * 2}:${H * 2},` +
+				`zoompan=${moves[move]}:d=1:s=${W}x${H}:fps=${FPS},setsar=1,format=yuv420p`,
+			'-c:v', 'libx264', '-crf', '18', '-preset', 'medium', '-r', String(FPS), o],
+			{ stdio: ['ignore', 'ignore', 'pipe'] });
+		return o;
 	};
 
-	const segs = spec.cards.map((c, i) => {
+	// every segment carries an extra tail so the crossfade has material to work with
+	const files = spec.cards.map((c, i) => {
 		const src = p(`-${i}.png`);
 		if (!existsSync(src)) die(`missing ${src} — run pic first`);
-		const seg = p(`-seg${i}.mp4`);
-		execFileSync('ffmpeg', ['-y', '-loop', '1', '-i', src, '-t', String(hold),
-			'-vf', `scale=${W * 2}:${H * 2}:force_original_aspect_ratio=increase,crop=${W * 2}:${H * 2},` +
-				`zoompan=${moves[c.move ?? 'in']}:d=1:s=${W}x${H}:fps=${FPS},setsar=1,format=yuv420p`,
-			'-c:v', 'libx264', '-crf', '18', '-preset', 'medium', '-r', String(FPS), seg],
-			{ stdio: ['ignore', 'ignore', 'pipe'] });
-		return seg;
+		return seg(src, holds[i] + x, c.move ?? 'in');
 	});
 
-	if (spec.endcard) {
+	if (holds.length > spec.cards.length) {
 		const b = style.burn;
-		const f = (x) => `data:font/woff2;base64,${readFileSync(x).toString('base64')}`;
-		const html = p('-end.html'), png = p('-end.png'), seg = p('-segE.mp4');
+		const fnt = (v) => `data:font/woff2;base64,${readFileSync(v).toString('base64')}`;
+		const html = p('-end.html'), png = p('-end.png');
 		writeFileSync(html, `<meta charset="utf-8"><style>
-@font-face{font-family:d;src:url('${f(b.fonts.display)}') format('woff2-variations');font-weight:200 800}
-@font-face{font-family:m;src:url('${f(b.fonts.mono)}') format('woff2')}
+@font-face{font-family:d;src:url('${fnt(b.fonts.display)}') format('woff2-variations');font-weight:200 800}
+@font-face{font-family:m;src:url('${fnt(b.fonts.mono)}') format('woff2')}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:${W}px;height:${H}px;background:${b.paper}}
 body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 90px}
@@ -111,15 +120,21 @@ body{display:flex;flex-direction:column;justify-content:center;align-items:cente
 </style><div class="l">${b.endcard_label}</div><div class="n">${b.name}</div><div class="r"></div><div class="l">${b.endcard_sub}</div>`);
 		execFileSync(b.chromium, ['--headless=new', '--disable-gpu', '--hide-scrollbars',
 			'--force-device-scale-factor=1', `--window-size=${W},${H}`, `--screenshot=${png}`, `file://${html}`]);
-		execFileSync('ffmpeg', ['-y', '-loop', '1', '-i', png, '-t', String(spec.endcard),
-			'-vf', `scale=${W}:${H},setsar=1,format=yuv420p`, '-c:v', 'libx264', '-crf', '18',
-			'-r', String(FPS), seg], { stdio: ['ignore', 'ignore', 'pipe'] });
-		segs.push(seg);
+		files.push(seg(png, holds[holds.length - 1] + x, 'in'));
 	}
 
-	const list = p('-list.txt');
-	writeFileSync(list, segs.map((s) => `file '${s}'`).join('\n'));
-	execFileSync('ffmpeg', ['-y', '-f', 'concat', '-safe', '0', '-i', list,
+	// chain crossfades, each one centred on its cut so the change lands on the strike
+	let chain = '', last = '[0:v]';
+	files.slice(1).forEach((_, i) => {
+		const off = (cuts[i] - x / 2).toFixed(3);
+		const lbl = `[x${i}]`;
+		chain += `${last}[${i + 1}:v]xfade=transition=fade:duration=${x}:offset=${off}${lbl};`;
+		last = lbl;
+	});
+
+	execFileSync('ffmpeg', ['-y', ...files.flatMap((f) => ['-i', f]),
+		...(chain ? ['-filter_complex', chain.slice(0, -1), '-map', last] : []),
+		'-t', String(cuts[cuts.length - 1]),
 		'-c:v', 'libx264', '-crf', '18', '-preset', 'slow', '-pix_fmt', 'yuv420p',
 		'-movflags', '+faststart', p('.mp4')], { stdio: ['ignore', 'ignore', 'pipe'] });
 	console.log(p('.mp4'));
