@@ -1,0 +1,19 @@
+{
+  "name": "hgc-agent",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {
+    "agents": "^0.2.13",
+    "ai": "^7.0.67"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250801.0",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.42.0"
+  }
+}
