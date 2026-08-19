@@ -29,48 +29,40 @@ const api = async (path, init = {}) => {
 
 if (cmd === 'pic') {
 	if (!key) die('OPENROUTER_API_KEY is not set');
-	const draft = process.argv[5] === 'draft';
-	const model = draft ? style.draft_model : style.prod_model;
+	const prod = process.argv[5] === 'prod';
+	const model = prod ? style.prod_model : style.draft_model;
 	const idx = arg === 'all' ? spec.cards.map((_, i) => i) : [Number(arg)];
-	const bal = (await api('/key')).data.limit_remaining;
-	console.error(`${idx.length} still(s) on ${model}, balance $${bal.toFixed(2)}`);
+	console.error(`${idx.length} still(s) on ${model}, balance $${(await api('/key')).data.limit_remaining.toFixed(3)}`);
+
+	// one fixed style reference for every card of every episode, so the look never drifts
+	const refPath = join(here, style.style_ref);
+	const ref = existsSync(refPath)
+		? [{ type: 'image_url', image_url: { url: `data:image/png;base64,${readFileSync(refPath).toString('base64')}` } }]
+		: [];
+
 	for (const i of idx) {
 		const c = spec.cards[i];
-		const prompt = `THIS IS A SINGLE FRAME FROM A PAINTED 3D ANIMATED FEATURE FILM. it is not a photograph, not live action, and not an oil painting on canvas. it is animation. every surface is built from flat simplified planes of painted colour with soft painted edges, the way a background painter blocks in a shape. there is no photographic surface texture, no visible fabric weave or carpet fibre, no volumetric light shafts or god rays, no realistic depth of field, no render sheen and no specular highlights. light falls as broad flat painted shapes, not as simulated beams.
+		const prompt = `${style.look}
 
-${style.look}
-
-palette: cold teal green ground against a warm amber key. no magenta, no pink, no purple.
+match the painted look of the reference image exactly: the same flat simplified planes of colour, the same soft painted edges, the same cold teal green ground against a warm amber key, the same low key with large areas of near black. it is a frame from a painted animated feature, never a photograph and never a 3d render.
 
 ${c.scene}
 
-the words "${c.line}" appear in this picture, and they are physically part of the scene, never printed over it. ${c.text_in}. the lettering is large, plain, lowercase, on two lines. it is cut into the material with real physical depth, shadow inside every groove and a lit edge along one side of every stroke, never flat colour laid on the surface. nothing else in the picture carries any writing.
+the words "${c.line}" are cut into the scene itself, never printed on top. ${c.text_in}. every groove holds shadow down one side and catches a lit edge down the other, so the letters read as real physical depth. the carving is crude and human: the depth wanders, strokes are slightly crooked or doubled, edges are chipped, grain is torn. the lettering is large, plain, lowercase, on two lines, well inside the frame. nothing else in the picture carries any writing.
 
 vertical 9:16. no watermark, no logo, no caption bar, no border.`;
-		const gen = async (body) => {
-			const j = await api('/images', { method: 'POST', body: JSON.stringify(body) });
-			const d = j.data?.[0];
-			const b64 = d?.b64_json ?? (d?.url?.startsWith('data:') ? d.url.split(',')[1] : null);
-			if (!b64) die(`card ${i}: no image ${JSON.stringify(j).slice(0, 300)}`);
-			return Buffer.from(b64, 'base64');
-		};
 
-		// pass one: the cheap model paints the scene in the house style
-		const base = await gen({ model: style.draft_model, prompt, aspect_ratio: '9:16', resolution: '1K' });
-		writeFileSync(p(`-d${i}.png`), base);
-		if (draft) { console.log(p(`-d${i}.png`)); continue; }
+		const body = { model, prompt, aspect_ratio: '9:16', input_references: ref };
+		if (prod) body.quality = style.prod_quality ?? 'medium';
+		else { body.resolution = '1K'; if (spec.seed !== undefined) body.seed = spec.seed; }
 
-		// pass two: the strong model letters the clean painting without touching the paint
-		const fixed = await gen({
-			model: style.prod_model,
-			prompt: `the writing on ${c.surface} in this painting is misspelled nonsense. erase it completely and redraw it from scratch, spelled correctly, reading exactly these words and nothing else: "${c.line}". keep it the same size and in the same place, on two lines, plain lowercase. it must stay cut into the material with real physical depth, shadow inside every groove and a lit edge along one side of every stroke, with the same imperfections, chipped edges and wandering depth. it is never flat type laid on the surface: ${c.text_in}. everything else in the painting stays exactly as it is: same colours, same light, same composition, every object where it is. above all keep it a flat painted animation frame built from simplified planes of colour with soft painted edges. do not repaint any surface realistically, do not add photographic texture or grain to the floor, walls, fabric or metal, do not add depth of field, render sheen or specular highlights. the only thing you change is the lettering.`,
-			input_references: [{ type: 'image_url', image_url: { url: `data:image/png;base64,${base.toString('base64')}` } }],
-			aspect_ratio: '9:16',
-			resolution: '1K',
-			quality: 'low'
-		});
-		writeFileSync(p(`-${i}.png`), fixed);
-		console.log(p(`-${i}.png`));
+		const j = await api('/images', { method: 'POST', body: JSON.stringify(body) });
+		const d = j.data?.[0];
+		const b64 = d?.b64_json ?? (d?.url?.startsWith('data:') ? d.url.split(',')[1] : null);
+		if (!b64) die(`card ${i}: no image ${JSON.stringify(j).slice(0, 300)}`);
+		const f = p(prod ? `-${i}.png` : `-d${i}.png`);
+		writeFileSync(f, Buffer.from(b64, 'base64'));
+		console.log(f);
 	}
 }
 

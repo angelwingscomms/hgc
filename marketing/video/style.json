@@ -19,6 +19,8 @@
       "mono": "/home/ed/i/hgc/static/fonts/ibm-plex-mono-normal-500.woff2"
     }
   },
-  "draft_model": "krea/krea-2-medium-turbo",
-  "prod_model": "x-ai/grok-imagine-image-2.0"
+  "draft_model": "black-forest-labs/flux.2-klein-4b",
+  "prod_model": "openai/gpt-image-2",
+  "prod_quality": "medium",
+  "style_ref": "ref/style-ref.png"
 }
