@@ -5,29 +5,33 @@
       "line": "no judge's warrant, no need to open the door",
       "move": "in",
       "scene": "a woman in her thirties stands two steps back from her own front door at night, completely still, arms down at her sides, deliberately not reaching for the handle. she is looking straight at the door, jaw set, frightened but holding. through the frosted glass panel in the upper half of the door, the dark shapes of two figures stand waiting on the other side. one bare hallway bulb lights the side of her face and the face of the door. everything else falls to near black.",
-      "text_in": "the sentence shows in the door's own paintwork, where years of weather and hands have worn the paint thin and flaked it away, the pale bare wood underneath showing through in the shape of the letters, catching the hallway light across the door",
-      "surface": "the painted face of the front door"
+      "text_in": "the sentence is carved into the painted wood of the door itself, gouged in with a blade, each stroke cut clean through the paint layer into the bare pale wood underneath. every groove holds dark shadow down one side and catches a bright edge of the hallway light down the other, so the letters read as real depth cut into the surface. the carving is imperfect and human: the depth wanders, some strokes are crooked or doubled where the blade slipped, paint is chipped and flaked back along the edges of every cut, and splinters stand up where the blade tore across the grain. it looks cut there years ago",
+      "surface": "the painted face of the front door",
+      "carved": true
     },
     {
       "line": "the government will never call you for money",
       "move": "drift-left",
       "scene": "a small kitchen at night, one warm bulb. a phone lies face up on a formica counter, screen lit pale with an unknown number calling. a cold half drunk cup of tea beside it. beside them a thick cream government envelope lies flat and unopened.",
       "text_in": "the sentence is pressed blind into the thick cream paper of that envelope, no ink at all, only the raised and sunken shapes of the letters catching a low raking light across the paper",
-      "surface": "the front of the cream government envelope"
+      "surface": "the front of the cream government envelope",
+      "carved": true
     },
     {
       "line": "the flight home is what triggers the ban",
       "move": "in",
       "scene": "an empty airport departure gate at dawn, long rows of seats, one suitcase standing alone, a tall window with a plane waiting on the wet apron beyond, cold grey blue light flooding in.",
-      "text_in": "the sentence is worn into the painted concrete floor in the wide empty foreground, the paint rubbed away by thousands of feet, the letters showing as pale worn patches. it lies flat across the floor facing the camera, reading left to right on two stacked lines, sitting well inside the frame with clear space at both edges, never running away towards the horizon and never touching the edge of the picture",
-      "surface": "the painted concrete floor of the gate area"
+      "text_in": "the sentence is engraved into the concrete floor itself, in the wide empty foreground, each letter a shallow trough cut into the slab. the insides of the grooves are darkened with years of grime and their top edges are worn pale and smooth by feet. every groove holds shadow on the side away from the window and catches the low dawn light on the side facing it, so the letters read as cut depth and not as paint. the cutting is imperfect, edges chipped, a few letters shallower than the rest, hairline cracks running off some strokes. it lies flat across the floor facing the camera on two stacked lines, well inside the frame with clear space at both edges",
+      "surface": "the painted concrete floor of the gate area",
+      "carved": true
     },
     {
       "line": "none of this was hidden. nobody told you.",
-      "move": "drift-right",
+      "move": "in",
       "scene": "a woman in her thirties sits on the floor of a narrow hallway at night, her back against the wall, knees drawn up, one opened letter loose in her hand and four or five more envelopes fanned on the floorboards around her. she is looking down at the letter, tired, her face clearly visible and lit. the hallway is cold teal and nearly black. one warm amber light falls out of an open doorway behind her and lays a long panel of light across the floorboards in front of her.",
-      "text_in": "the sentence is worn into the varnish of those wooden floorboards inside that panel of light, the shine rubbed away by years of feet walking the same line down the hall, the letters showing only as dull patches where the varnish has gone, following the perspective of the boards",
-      "surface": "the wooden floorboards inside the panel of light"
+      "text_in": "the sentence is carved into the wooden floorboards, hacked in roughly with a knife, the strokes cutting across the grain and straight through the varnish into raw pale wood. the grooves are uneven in depth and width, some strokes doubled where the blade slipped, torn grain and small splinters along every edge, the varnish chipped back around them. shadow sits in the bottom of each cut and the warm light from the doorway catches the raised edge of every stroke",
+      "surface": "the wooden floorboards inside the panel of light",
+      "carved": true
     }
   ],
   "sound": {

@@ -44,7 +44,7 @@ palette: cold teal green ground against a warm amber key. no magenta, no pink, n
 
 ${c.scene}
 
-the words "${c.line}" appear in this picture, and they are physically part of the scene, never printed over it. ${c.text_in}. the lettering is large, plain, lowercase, on two lines. nothing else in the picture carries any writing.
+the words "${c.line}" appear in this picture, and they are physically part of the scene, never printed over it. ${c.text_in}. the lettering is large, plain, lowercase, on two lines. it is cut into the material with real physical depth, shadow inside every groove and a lit edge along one side of every stroke, never flat colour laid on the surface. nothing else in the picture carries any writing.
 
 vertical 9:16. no watermark, no logo, no caption bar, no border.`;
 		const gen = async (body) => {
@@ -63,7 +63,7 @@ vertical 9:16. no watermark, no logo, no caption bar, no border.`;
 		// pass two: the strong model letters the clean painting without touching the paint
 		const fixed = await gen({
 			model: style.prod_model,
-			prompt: `the writing on ${c.surface} in this painting is misspelled nonsense. erase it completely and redraw it from scratch, spelled correctly, reading exactly these words and nothing else: "${c.line}". keep it the same size and in the same place, on two lines, plain lowercase. it must stay physically part of the scene exactly as it is now, never flat type laid on top: ${c.text_in}. everything else in the painting stays exactly as it is: same flat painted style, same colours, same light, same composition, every object where it is.`,
+			prompt: `the writing on ${c.surface} in this painting is misspelled nonsense. erase it completely and redraw it from scratch, spelled correctly, reading exactly these words and nothing else: "${c.line}". keep it the same size and in the same place, on two lines, plain lowercase. it must stay cut into the material with real physical depth, shadow inside every groove and a lit edge along one side of every stroke, with the same imperfections, chipped edges and wandering depth. it is never flat type laid on the surface: ${c.text_in}. everything else in the painting stays exactly as it is: same colours, same light, same composition, every object where it is. above all keep it a flat painted animation frame built from simplified planes of colour with soft painted edges. do not repaint any surface realistically, do not add photographic texture or grain to the floor, walls, fabric or metal, do not add depth of field, render sheen or specular highlights. the only thing you change is the lettering.`,
 			input_references: [{ type: 'image_url', image_url: { url: `data:image/png;base64,${base.toString('base64')}` } }],
 			aspect_ratio: '9:16',
 			resolution: '1K',
