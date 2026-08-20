@@ -1,0 +1,55 @@
+{
+  "id": "hgc-sad",
+  "seed": 27,
+  "cuts": [
+    3.54,
+    7.07,
+    10.61,
+    14.12,
+    16.02
+  ],
+  "xfade": 0.35,
+  "sound": {
+    "track": "benson boone - in the stars (slowed + reverb), tiktok version",
+    "start_at": 2.3,
+    "note": "start the sound 2.30s into the track, on the first piano strike"
+  },
+  "source": "linkedin post, 8mo: your U.S. citizen baby is NOT your immigration plan",
+  "cards": [
+    {
+      "line": "a us citizen baby does not make you legal",
+      "move": "in",
+      "surface": "the painted wooden window frame beside the bed",
+      "scene": "a hospital room late at night, one low warm lamp. a young mother sits up in the bed holding her newborn against her chest, looking down at the baby, exhausted and frightened and in love all at once. her face is clearly lit and visible. the window beside the bed is black with night and rain. everything else falls to near black and cold teal.",
+      "text_in": "the sentence is carved into the painted wooden frame of that window beside the bed, gouged in with a blade clean through the paint into the bare pale wood beneath. every groove holds dark shadow down one side and catches the warm lamplight down the other, so the letters read as real cut depth. the carving is crude and human, the depth wandering, strokes crooked, paint chipped and flaked back along every cut the lettering is cut large and bold, filling most of the width of that surface, deep and high in contrast so it is read at a glance from across a room"
+    },
+    {
+      "line": "they cannot petition for you until they are 21",
+      "move": "drift-left",
+      "surface": "the wooden doorframe covered in pencil height marks",
+      "scene": "a doorframe in a small home, covered from knee height upward in years of pencil height marks and dates. a mother crouches beside her small child, flattening their hair to mark the newest line. warm afternoon light comes down the doorframe from a window out of shot, both faces lit and visible, the rest of the house dark teal behind them.",
+      "text_in": "the sentence is carved into the wood of that doorframe among the pencil marks, cut deep with a knife straight through the paint into raw wood. the grooves hold shadow on one side and catch the warm light on the other. the cuts are uneven and old, edges chipped, grain torn, some strokes doubled where the blade slipped, as if cut there years before the pencil marks the lettering is cut large and bold, filling most of the width of that surface, deep and high in contrast so it is read at a glance from across a room"
+    },
+    {
+      "line": "that is twenty one years of waiting",
+      "move": "in",
+      "surface": "the wooden floorboards in front of the bed",
+      "scene": "a bedroom at night. a woman in her thirties sits on the edge of the bed fully dressed with her shoes on and her coat still buttoned, hands in her lap, staring at the bedroom door. a packed bag stands ready by the door. she has been sitting like this a long time. one warm light from the hall outlines her, her face visible and tired. the room is cold teal and near black.",
+      "text_in": "the sentence is carved into the wooden floorboards in front of her bed, hacked in roughly with a knife across the grain and through the varnish into raw pale wood. the grooves are uneven in depth and width, splinters and torn grain along every edge, varnish chipped back around them, shadow sitting in the bottom of every cut and the warm hall light catching the raised edge of each stroke"
+    },
+    {
+      "line": "there are other ways. nobody told you.",
+      "move": "drift-right",
+      "surface": "the wooden kitchen tabletop",
+      "scene": "the same dark kitchen, one beat later. the woman sits at the same wooden table but has set the phone face down and taken her hands off it. she has lifted her head and is looking up and away, towards a door standing open across the room where the first warm light of morning is coming in and laying a pale panel across the floor and the table. her face is lit by that light and clearly visible, tired, not smiling, but no longer bent over the screen. the rest of the room is still cold teal and near black.",
+      "text_in": "the sentence is carved into the wooden tabletop in front of her, cut deep and crude with a blade into the worn wood, the grooves darkened with years of grime. every groove holds shadow down one side and catches the warm morning light down the other, so the letters read as real cut depth. the cutting is uneven, edges chipped, grain torn, some strokes doubled, as if scratched there slowly over a long time"
+    },
+    {
+      "line": "Hogan and Crown Law",
+      "move": "in",
+      "surface": "the face of the stone slab",
+      "scene": "end card, generated separately by endcard.json",
+      "text_in": "carved into stone, uncoloured grooves"
+    }
+  ]
+}
